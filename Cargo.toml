@@ -1,2 +1,2 @@
 [workspace]
-members = ["daemon", "server"]
+members = ["agent", "server"]
