@@ -1,0 +1,18 @@
+@startuml
+!include <C4/C4_Context>
+    title System Context diagram for Executioner system
+    Person(userA, "User", "Able to run scripts")
+    Person(userB, "Dev", "Able to create scripts")
+    Person(admin, "Admin", "Able to administer the system")
+
+    System(executioner, "Executioner", "http server, manifests, user state, script agents")
+    System_Ext(kubernetes, "Kubernetes")
+    SystemQueue_Ext(kafka, "Kafka")
+
+    Rel(userA, executioner, "Browse and run scripts")
+    Rel(userB, executioner, "Create and validate scripts")
+    Rel(admin, executioner, "Do admin things")
+
+    Rel(executioner, kubernetes, "Do operations on cluster")
+    Rel(executioner, kafka, "Do operations on kafka")
+@enduml
