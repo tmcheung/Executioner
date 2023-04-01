@@ -1,0 +1,10 @@
+{
+    "image": "jreinhart/echo",
+    "parameters": {
+        "stdin": {
+            "type": "string",
+            "documentation": "content to output"
+        }
+    },
+    "documentation": "Outputs the from content given to standard input"
+}
