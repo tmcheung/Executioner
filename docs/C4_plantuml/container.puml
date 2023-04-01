@@ -1,0 +1,29 @@
+@startuml
+!include <C4/C4_Container>
+    LAYOUT_AS_SKETCH()
+    title Container diagram for the Executioner system
+    Person(user, "User")
+
+    System_Boundary(c1, "Executioner") {
+        Container(web_server, "Web Server", "Rust, Axum, Yew", "Accepts http requests")
+        Container(web_app, "Web App in the browser", "SPA or static", "Provides a catalog of manifests and the ability to run configurable manifests")
+        Container(agent, "Agent", "Rust", "Starts manifests as containers")
+        ContainerDb(database, "Storage", "Redis/Postgres/..", "Holds manifests, users..")
+    }
+
+    System_Boundary(c2, "Docker capable environment") {
+        Container(docker_container1, "echo", "docker container", "Docker container running echo")
+    }
+
+    System_Ext(k8s, "Kubernetes API", "")
+
+    Rel(user, web_server, "Visits to website.com", "https")
+    Rel(web_server, database, "Reads/Writes")
+    Rel(web_server, web_app, "Deliver a bundled site to the user")
+    Rel(web_app, web_server, "Run manifest", "HTTPS POST")
+    Rel(user, web_app, "View catalog, configure and run manifest")
+    Rel(agent, web_server, "Polls server for jobs every 5s", "https or rpc")
+    Rel(agent, k8s, "Asks k8s api to create resources. K8s answers with references to the newly created resources.", "https")
+    Rel(agent, database, "Read/Write?")
+    Rel(k8s, c2, "Create container")
+@enduml
