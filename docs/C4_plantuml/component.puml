@@ -1,0 +1,11 @@
+@startuml
+!include <C4/C4_Component>
+    LAYOUT_AS_SKETCH()
+    title Component diagram for the Web Server
+    Person(user, "User")
+    Container_Boundary(web_server, "Web Server") {
+        Component(manifest, "Manifest", "")
+        Component(login, "Login", "")
+    }
+    SHOW_LEGEND()
+@enduml
