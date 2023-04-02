@@ -16,4 +16,5 @@
 
     Rel(executioner, kubernetes, "Do operations on cluster")
     Rel(executioner, kafka, "Do operations on kafka")
+    SHOW_LEGEND()
 @enduml

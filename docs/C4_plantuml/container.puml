@@ -26,4 +26,5 @@
     Rel(agent, k8s, "Asks k8s api to create resources. K8s answers with references to the newly created resources.", "https")
     Rel(agent, database, "Read/Write?")
     Rel(k8s, c2, "Create container")
+    SHOW_LEGEND()
 @enduml
